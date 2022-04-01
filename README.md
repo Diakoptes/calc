@@ -1,2 +1,2 @@
 # calculator
-This is a siple calculator.
+This is a simple calculator.
