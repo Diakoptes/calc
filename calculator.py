@@ -13,13 +13,11 @@ first_num.pack()
 second_num = ttk.Entry(root, text="input calculator1")
 second_num.pack()
 
-
 def calc_sum():
     num1 = float(first_num.get())
     num2 = float(second_num.get())
 
     result.config(text=str(num1 + num2))
-
 
 def calc_sub():
     num1 = float(first_num.get())
@@ -34,10 +32,13 @@ def calc_multi():
     result.config(text=str(num1 * num2))
 
 def calc_div():
+    
     num1 = float(first_num.get())
     num2 = float(second_num.get())
-
-    result.config(text=str(num1 / num2))
+    if num1 == 0 or num2 == 0:
+        result.config(text="err")
+    else:
+        result.config(text=str(num1 / num2))
 
 def calc_exp():
     num1 = float(first_num.get())
@@ -50,7 +51,6 @@ def calc_mod():
     num2 = float(second_num.get())
 
     result.config(text=str(num1 % num2))
-
 
 sum_bt = ttk.Button(root, text="+", command=calc_sum)
 sum_bt.pack()
