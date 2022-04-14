@@ -1,6 +1,7 @@
+from cmath import exp
 import tkinter as tk
 from tkinter import ttk
-
+from math import sqrt
 
 root = tk.Tk()
 root.title("calculator")
@@ -13,55 +14,66 @@ first_num.pack()
 second_num = ttk.Entry(root, text="input calculator1")
 second_num.pack()
 
-def calc_sum():
-    num1 = float(first_num.get())
-    num2 = float(second_num.get())
+def calc_sum(first_num, second_num):
 
-    result.config(text=str(num1 + num2))
+    try:
+        return float(first_num) + float(second_num)
+    except ValueError as err:
+        return "unexpected value"
 
-def calc_sub():
-    num1 = float(first_num.get())
-    num2 = float(second_num.get())
+def calc_sub(first_num, second_num):
 
-    result.config(text=str(num1 - num2))
-
-def calc_multi():
-    num1 = float(first_num.get())
-    num2 = float(second_num.get())
-
-    result.config(text=str(num1 * num2))
-
-def calc_div():
+    try:
+        return float(first_num) - float(second_num)
+    except ValueError as err:
+        return "unexpected value"
     
-    num1 = float(first_num.get())
-    num2 = float(second_num.get())
-    if num1 == 0 or num2 == 0:
-        result.config(text="err")
-    else:
-        result.config(text=str(num1 / num2))
+def calc_multi(first_num, second_num):
+    try:
+       return float(first_num) * float(second_num)
+    except ValueError as err:
+        return "unexpected value"
 
-def calc_exp():
-    num1 = float(first_num.get())
-    num2 = float(second_num.get())
+def calc_div(first_num, second_num):
 
-    result.config(text=str(num1 ** num2))
+    try:
+        return float(first_num) / float(second_num)
+    except ZeroDivisionError as err:
+        result.config(text=err)
+    except ValueError as err:
+        result.config(text="ValueError")
 
-def calc_mod():
-    num1 = float(first_num.get())
-    num2 = float(second_num.get())
+def calc_exp(first_num, second_num):
 
-    result.config(text=str(num1 % num2))
+    try:
+        return float(first_num) ** float(second_num)
+    except ValueError as err:
+        result.config(text="ValueError")
 
-sum_bt = ttk.Button(root, text="+", command=calc_sum)
+def calc_mod(first_num, second_num):
+    
+    try:
+        return float(first_num) % float(second_num)
+    except ValueError as err:
+        result.config(text="ValueError")
+
+sum_bt = ttk.Button(root, text="+", command=lambda: result.config(text=calc_sum(first_num.get(), second_num.get())))
 sum_bt.pack()
-sub_bt = ttk.Button(root, text="-", command=calc_sub)
+
+sub_bt = ttk.Button(root, text="-", command=lambda: result.config(text=calc_sub(first_num.get(), second_num.get())))
 sub_bt.pack()
-multi_bt = ttk.Button(root, text="*", command=calc_multi)
+
+multi_bt = ttk.Button(root, text="*", command=lambda: result.config(text=calc_multi(first_num.get(), second_num.get())))
 multi_bt.pack()
-div_bt = ttk.Button(root, text="/", command=calc_div)
+
+div_bt = ttk.Button(root, text="/", command=lambda: result.config(text=calc_div(first_num.get(), second_num.get())))
 div_bt.pack()
-sum_exp = ttk.Button(root, text="**", command=calc_exp)
-sum_exp.pack()
-sum_mod = ttk.Button(root, text="%", command=calc_mod)
-sum_mod.pack()
+
+exp_bt = ttk.Button(root, text="**", command=lambda: result.config(text=calc_exp(first_num.get(), second_num.get())))
+exp_bt.pack()
+
+mod_bt = ttk.Button(root, text="%", command=lambda: result.config(text=calc_mod(first_num.get(), second_num.get())))
+mod_bt.pack()
+
+
 root.mainloop()
