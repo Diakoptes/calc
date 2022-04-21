@@ -1,19 +1,17 @@
-from calculator import calc_div
+from calculator import Calculator
+from layout import*
+import pytest
 
-def test_calc_div():
-    
-    first_num = float(33)
-    second_num = float(11)
-    
-    div = calc_div(first_num, second_num)
-   
-    assert div == 3
+def setup_module():
+    print('\n===Setup Module===')
 
-def test_calc_div_negative():
+def test_div():
+    assert Calculator.calc_div(10, 1) == 10
 
-    first_num = float(100)
-    second_num = float(1)
 
-    div = calc_div(first_num, second_num)
 
-    assert div != 200    
+ 
+def teardown_module():
+    print('\n===Teardown Module===')
+
+
