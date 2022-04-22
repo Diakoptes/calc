@@ -1,6 +1,5 @@
-from calculator import Calculator
-from layout import*
-import pytest
+from calc.calculator import Calculator
+from calc.layout import*
 
 def setup_module():
     print('\n===Setup Module===')
